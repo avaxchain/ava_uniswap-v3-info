@@ -221,7 +221,7 @@ export const StyledMenuButton = styled.button`
 //   [ChainId.RINKEBY]: 'Rinkeby',
 //   [ChainId.ROPSTEN]: 'Ropsten',
 //   [ChainId.GÖRLI]: 'Görli',
-//   [ChainId.KOVAN]: 'Kovan',
+//   [ChainId.AVALANCHE]: 'Avalanche',
 // }
 
 export default function Header() {

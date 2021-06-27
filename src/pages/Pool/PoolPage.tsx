@@ -180,7 +180,7 @@ export default function PoolPage({
             <AutoColumn gap="lg">
               <RowFixed>
                 <StyledExternalLink
-                  href={`https://app.uniswap.org/#/add/${poolData.token0.address}/${poolData.token1.address}/${poolData.feeTier}`}
+                  href={`https://wavax.org/#/add/${poolData.token0.address}/${poolData.token1.address}/${poolData.feeTier}`}
                 >
                   <ButtonGray width="170px" mr="12px" style={{ height: '44px' }}>
                     <RowBetween>
@@ -190,7 +190,7 @@ export default function PoolPage({
                   </ButtonGray>
                 </StyledExternalLink>
                 <StyledExternalLink
-                  href={`https://app.uniswap.org/#/swap?inputCurrency=${poolData.token0.address}&outputCurrency=${poolData.token1.address}`}
+                  href={`https://wavax.org/#/swap?inputCurrency=${poolData.token0.address}&outputCurrency=${poolData.token1.address}`}
                 >
                   <ButtonPrimary width="100px" style={{ height: '44px' }}>
                     Trade

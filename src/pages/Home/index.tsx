@@ -104,7 +104,7 @@ export default function Home() {
     <PageWrapper>
       <ThemedBackgroundGlobal backgroundColor={'#fc077d'} />
       <AutoColumn gap="16px">
-        <TYPE.main>Uniswap Overview</TYPE.main>
+        <TYPE.main>Hayden V3 Overview</TYPE.main>
         <ResponsiveRow>
           <ChartWrapper>
             <LineChart

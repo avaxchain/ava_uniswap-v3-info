@@ -16,13 +16,13 @@ export const UNSUPPORTED_LIST_URLS: string[] = []
 // const CMC_ALL_LIST = 'defi.cmc.eth'
 // const CMC_STABLECOIN = 'stablecoin.cmc.eth'
 // const KLEROS_LIST = 't2crtokens.eth'
-const GEMINI_LIST = 'https://www.gemini.com/uniswap/manifest.json'
+const AVA_AEB_LIST = 'https://raw.githubusercontent.com/pangolindex/tokenlists/main/aeb.tokenlist.json'
 
 // lower index == higher priority for token import
 export const DEFAULT_LIST_OF_LISTS: string[] = [
-  GEMINI_LIST,
+  AVA_AEB_LIST,
   ...UNSUPPORTED_LIST_URLS, // need to load unsupported tokens as well
 ]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [GEMINI_LIST]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = [AVA_AEB_LIST]

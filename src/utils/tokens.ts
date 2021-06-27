@@ -31,14 +31,14 @@ export function deserializeToken(serializedToken: SerializedToken): Token {
 
 export function formatTokenSymbol(address: string, symbol: string) {
   if (address === WETH_ADDRESS) {
-    return 'ETH'
+    return 'AVAX'
   }
   return symbol
 }
 
 export function formatTokenName(address: string, name: string) {
   if (address === WETH_ADDRESS) {
-    return 'Ether'
+    return 'ETHER'
   }
   return name
 }

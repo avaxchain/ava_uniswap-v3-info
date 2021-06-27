@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 export const client = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v3-alt',
+  uri: 'https://api.thegraph.com/subgraphs/name/avadex/v3',
   cache: new InMemoryCache(),
   queryDeduplication: true,
   defaultOptions: {
@@ -21,7 +21,7 @@ export const healthClient = new ApolloClient({
 })
 
 export const blockClient = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/blocklytics/ethereum-blocks',
+  uri: 'https://api.thegraph.com/subgraphs/name/dasconnor/avalanche-blocks',
   cache: new InMemoryCache(),
   queryDeduplication: true,
   defaultOptions: {

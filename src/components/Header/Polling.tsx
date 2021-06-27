@@ -86,7 +86,7 @@ export default function Polling() {
   )
 
   return (
-    <ExternalLink href={latestBlock ? getEtherscanLink(1, latestBlock.toString(), 'block') : ''}>
+    <ExternalLink href={latestBlock ? getEtherscanLink(43114, latestBlock.toString(), 'block') : ''}>
       <StyledPolling>
         <TYPE.small mr="4px" color={theme.text3}>
           Latest synced block:{' '}

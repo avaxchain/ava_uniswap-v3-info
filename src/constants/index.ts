@@ -5,9 +5,9 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const FACTORY_ADDRESS = '0xFeabCc62240297F1e4b238937D68e7516f0918D7'
+export const FACTORY_ADDRESS = '0xE06B9a3C0A4314E00B33d9090a190ddC00a4DD01'
 
-export const ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
+export const ROUTER_ADDRESS = '0x787Bd59120fb81f8BE4AD34280a621877516fe37'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
@@ -18,18 +18,20 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-export const WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
+export const WETH_ADDRESS = '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7'
 
-export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
-export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
-export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
-export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
-export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
+export const DAI = new Token(
+  ChainId.AVALANCHE,
+  '0xE09CD46BBE2144b53C6265c2D1B3d01cfDadB786',
+  18,
+  'DAI',
+  'Dai Stablecoin'
+)
+export const USDT = new Token(ChainId.AVALANCHE, '0xde3A24028580884448a5397872046a019649b084', 6, 'USDT', 'Tether USD')
+export const WBTC = new Token(ChainId.AVALANCHE, '0x408D4cD0ADb7ceBd1F1A1C33A0Ba2098E1295bAB', 8, 'WBTC', 'Wrapped BTC')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
-export const AVERAGE_BLOCK_TIME_IN_SECS = 13
+export const AVERAGE_BLOCK_TIME_IN_SECS = 5
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
@@ -37,13 +39,13 @@ export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
 
 export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
-const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
+const UNI_ADDRESS = '0xf39f9671906d8630812f9d9863bBEf5D523c84Ab' //AEB
 export const UNI: { [chainId in ChainId]: Token } = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
   [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+  [ChainId.AVALANCHE]: new Token(ChainId.AVALANCHE, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
@@ -62,13 +64,13 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.ROPSTEN]: [WETH9[ChainId.ROPSTEN]],
   [ChainId.RINKEBY]: [WETH9[ChainId.RINKEBY]],
   [ChainId.GÖRLI]: [WETH9[ChainId.GÖRLI]],
-  [ChainId.KOVAN]: [WETH9[ChainId.KOVAN]],
+  [ChainId.AVALANCHE]: [WETH9[ChainId.AVALANCHE]],
 }
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR, WBTC],
+  [ChainId.AVALANCHE]: [...WETH_ONLY[ChainId.AVALANCHE], DAI, USDT, WBTC],
 }
 
 /**
@@ -76,15 +78,15 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * tokens.
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.MAINNET]: {
-    [AMPL.address]: [DAI, WETH9[ChainId.MAINNET]],
+  [ChainId.AVALANCHE]: {
+    [USDT.address]: [DAI, WETH9[ChainId.AVALANCHE]],
   },
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
+  [ChainId.AVALANCHE]: [...WETH_ONLY[ChainId.AVALANCHE], DAI, USDT, WBTC],
 }
 
 export const NETWORK_ONLY = {
@@ -105,7 +107,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
       new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
       new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin'),
     ],
-    [USDC, USDT],
+    [WBTC, USDT],
     [DAI, USDT],
   ],
 }

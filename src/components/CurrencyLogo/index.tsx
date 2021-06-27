@@ -4,7 +4,7 @@ import { isAddress } from 'utils'
 import Logo from '../Logo'
 
 export const getTokenLogoURL = (address: string) =>
-  `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`
+  `https://raw.githubusercontent.com/ava-labs/bridge-tokens/main/avalanche-tokens${address}/logo.png`
 
 const StyledLogo = styled(Logo)<{ size: string }>`
   width: ${({ size }) => size};
