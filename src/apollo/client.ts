@@ -1,7 +1,12 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
-export const client = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/avadex/v3',
+export const healthClient = new ApolloClient({
+  uri: 'https://api.thegraph.com/index-node/graphql',
+  cache: new InMemoryCache(),
+})
+
+export const blockClient = new ApolloClient({
+  uri: 'https://api.thegraph.com/subgraphs/name/dasconnor/avalanche-blocks',
   cache: new InMemoryCache(),
   queryDeduplication: true,
   defaultOptions: {
@@ -15,21 +20,115 @@ export const client = new ApolloClient({
   },
 })
 
-export const healthClient = new ApolloClient({
-  uri: 'https://api.thegraph.com/index-node/graphql',
-  cache: new InMemoryCache(),
+export const client = new ApolloClient({
+  uri: 'https://api.thegraph.com/subgraphs/name/avadex/v35',
+  cache: new InMemoryCache({
+    typePolicies: {
+      Token: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+      Pool: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+    },
+  }),
+  queryDeduplication: true,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
+  },
 })
 
-export const blockClient = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/dasconnor/avalanche-blocks',
+export const arbitrumClient = new ApolloClient({
+  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-arbitrum-one',
+  cache: new InMemoryCache({
+    typePolicies: {
+      Token: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+      Pool: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+    },
+  }),
+  queryDeduplication: true,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-first',
+    },
+    query: {
+      fetchPolicy: 'cache-first',
+      errorPolicy: 'all',
+    },
+  },
+})
+
+export const arbitrumBlockClient = new ApolloClient({
+  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/arbitrum-one-blocks',
   cache: new InMemoryCache(),
   queryDeduplication: true,
   defaultOptions: {
     watchQuery: {
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'cache-first',
     },
     query: {
-      fetchPolicy: 'network-only',
+      fetchPolicy: 'cache-first',
+      errorPolicy: 'all',
+    },
+  },
+})
+
+export const optimismClient = new ApolloClient({
+  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-optimism',
+  cache: new InMemoryCache({
+    typePolicies: {
+      Token: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+      Pool: {
+        // Singleton types that have no identifying field can use an empty
+        // array for their keyFields.
+        keyFields: false,
+      },
+    },
+  }),
+  queryDeduplication: true,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-first',
+    },
+    query: {
+      fetchPolicy: 'cache-first',
+      errorPolicy: 'all',
+    },
+  },
+})
+
+export const optimismBlockClient = new ApolloClient({
+  uri: 'https://api.thegraph.com/subgraphs/name/ianlapham/optimism-blocks',
+  cache: new InMemoryCache(),
+  queryDeduplication: true,
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-first',
+    },
+    query: {
+      fetchPolicy: 'cache-first',
       errorPolicy: 'all',
     },
   },

@@ -1,27 +1,21 @@
-import { useAllLists } from 'state/lists/hooks'
 import { getVersionUpgrade, minVersionBump, VersionUpgrade } from '@uniswap/token-lists'
+import { AVA_AEB_LIST, UNSUPPORTED_LIST_URLS } from 'constants/lists'
 import { useCallback, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useActiveWeb3React } from '../../hooks'
+import { useAllLists } from 'state/lists/hooks'
 import { useFetchListCallback } from '../../hooks/useFetchListCallback'
 import useInterval from '../../hooks/useInterval'
 import useIsWindowVisible from '../../hooks/useIsWindowVisible'
-import { AppDispatch } from '../index'
-import { acceptListUpdate } from './actions'
+import { acceptListUpdate, enableList } from './actions'
 import { useActiveListUrls } from './hooks'
-import { useAllInactiveTokens } from 'hooks/Tokens'
+import { useAppDispatch } from 'hooks/useAppDispatch'
 
 export default function Updater(): null {
-  const { library } = useActiveWeb3React()
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useAppDispatch()
   const isWindowVisible = useIsWindowVisible()
 
   // get all loaded lists, and the active urls
   const lists = useAllLists()
   const activeListUrls = useActiveListUrls()
-
-  // initiate loading
-  useAllInactiveTokens()
 
   const fetchList = useFetchListCallback()
   const fetchAllListsCallback = useCallback(() => {
@@ -31,8 +25,10 @@ export default function Updater(): null {
     )
   }, [fetchList, isWindowVisible, lists])
 
+  dispatch(enableList(AVA_AEB_LIST))
+
   // fetch all lists every 10 minutes, but only after we initialize library
-  useInterval(fetchAllListsCallback, library ? 1000 * 60 * 10 : null)
+  useInterval(fetchAllListsCallback, 1000 * 60 * 10)
 
   // whenever a list is not loaded and not loading, try again to load it
   useEffect(() => {
@@ -42,7 +38,17 @@ export default function Updater(): null {
         fetchList(listUrl).catch((error) => console.debug('list added fetching error', error))
       }
     })
-  }, [dispatch, fetchList, library, lists])
+  }, [dispatch, fetchList, lists])
+
+  // if any lists from unsupported lists are loaded, check them too (in case new updates since last visit)
+  useEffect(() => {
+    UNSUPPORTED_LIST_URLS.forEach((listUrl) => {
+      const list = lists[listUrl]
+      if (!list || (!list.current && !list.loadingRequestId && !list.error)) {
+        fetchList(listUrl).catch((error) => console.debug('list added fetching error', error))
+      }
+    })
+  }, [dispatch, fetchList, lists])
 
   // automatically update lists if versions are minor/patch
   useEffect(() => {

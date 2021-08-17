@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { TYPE, ExternalLink } from '../../theme'
 
-import { useSubgraphStatus } from '../../state/application/hooks'
+import { useActiveNetworkVersion, useSubgraphStatus } from '../../state/application/hooks'
 import { getEtherscanLink } from '../../utils'
 import useTheme from 'hooks/useTheme'
+import { EthereumNetworkInfo } from 'constants/networks'
 
 const StyledPolling = styled.div`
   display: flex;
@@ -64,12 +65,10 @@ const Spinner = styled.div`
 
 export default function Polling() {
   const theme = useTheme()
-
+  const [activeNetwork] = useActiveNetworkVersion()
   const [status] = useSubgraphStatus()
-
   const [isMounted, setIsMounted] = useState(true)
-
-  const latestBlock = status.syncedBlock
+  const latestBlock = activeNetwork === EthereumNetworkInfo ? status.headBlock : status.syncedBlock
 
   useEffect(
     () => {
@@ -86,7 +85,7 @@ export default function Polling() {
   )
 
   return (
-    <ExternalLink href={latestBlock ? getEtherscanLink(43114, latestBlock.toString(), 'block') : ''}>
+    <ExternalLink href={latestBlock ? getEtherscanLink(1, latestBlock.toString(), 'block', activeNetwork) : ''}>
       <StyledPolling>
         <TYPE.small mr="4px" color={theme.text3}>
           Latest synced block:{' '}

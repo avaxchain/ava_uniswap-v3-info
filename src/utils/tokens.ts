@@ -38,7 +38,7 @@ export function formatTokenSymbol(address: string, symbol: string) {
 
 export function formatTokenName(address: string, name: string) {
   if (address === WETH_ADDRESS) {
-    return 'ETHER'
+    return 'Avalanche'
   }
   return name
 }

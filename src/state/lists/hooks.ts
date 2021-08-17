@@ -2,11 +2,15 @@ import { UNSUPPORTED_LIST_URLS } from './../../constants/lists'
 import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list'
 import { ChainId, Token } from '@uniswap/sdk-core'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { AppState } from '../index'
 import sortByListPriority from 'utils/listSort'
 import UNSUPPORTED_TOKEN_LIST from '../../constants/tokenLists/uniswap-v2-unsupported.tokenlist.json'
+import AVA_AEB_LIST from '../../constants/tokenLists/ab.tokenlist.json'
+
+import { useFetchListCallback } from 'hooks/useFetchListCallback'
+// import { useFetchListCallback } from 'hooks/useFetchListCallback'
 
 type TagDetails = Tags[keyof Tags]
 export interface TagInfo extends TagDetails {
@@ -37,11 +41,12 @@ export type TokenAddressMap = Readonly<
  * An empty result, useful as a default.
  */
 const EMPTY_LIST: TokenAddressMap = {
-  [ChainId.AVALANCHE]: {},
+  [ChainId.KOVAN]: {},
   [ChainId.RINKEBY]: {},
   [ChainId.ROPSTEN]: {},
   [ChainId.GÖRLI]: {},
   [ChainId.MAINNET]: {},
+  [ChainId.AVALANCHE]: {},
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -61,7 +66,7 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
           })
           ?.filter((x): x is TagInfo => Boolean(x)) ?? []
       const token = new WrappedTokenInfo(tokenInfo, tags)
-      if (tokenMap[token.chainId][token.address] !== undefined) {
+      if (tokenMap[token.chainId]?.[token.address] !== undefined) {
         console.error(new Error(`Duplicate token! ${token.address}`))
         return tokenMap
       }
@@ -100,6 +105,7 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
     [ChainId.MAINNET]: { ...map1[ChainId.MAINNET], ...map2[ChainId.MAINNET] },
     [ChainId.RINKEBY]: { ...map1[ChainId.RINKEBY], ...map2[ChainId.RINKEBY] },
     [ChainId.ROPSTEN]: { ...map1[ChainId.ROPSTEN], ...map2[ChainId.ROPSTEN] },
+    [ChainId.KOVAN]: { ...map1[ChainId.KOVAN], ...map2[ChainId.KOVAN] },
     [ChainId.AVALANCHE]: { ...map1[ChainId.AVALANCHE], ...map2[ChainId.AVALANCHE] },
     [ChainId.GÖRLI]: { ...map1[ChainId.GÖRLI], ...map2[ChainId.GÖRLI] },
   }
@@ -171,4 +177,22 @@ export function useUnsupportedTokenList(): TokenAddressMap {
 export function useIsListActive(url: string): boolean {
   const activeListUrls = useActiveListUrls()
   return Boolean(activeListUrls?.includes(url))
+}
+
+// const OPTIMISM_LIST = 'https://static.optimism.io/optimism.tokenlist.json'
+
+export function useOptimismList() {
+  const fetchList = useFetchListCallback()
+  const [list, setList] = useState<string | undefined>(undefined)
+
+  useEffect(() => {
+    async function fetch() {
+      // const optimismList = await fetchList(OPTIMISM_LIST)
+
+      setList('hey')
+    }
+    if (!list) {
+      fetch()
+    }
+  }, [list])
 }

@@ -29,16 +29,16 @@ const TopBar = () => {
         <Polling />
         <AutoRow gap="6px">
           <RowFixed>
-            <Item>AVAX Price:</Item>
+            <Item>ETH Price:</Item>
             <Item fontWeight="700" ml="4px">
               {formatDollarAmount(ethPrices?.current)}
             </Item>
           </RowFixed>
         </AutoRow>
         <AutoRow gap="6px" style={{ justifyContent: 'flex-end' }}>
-          <StyledLink href="https://v2.info.uniswap.org/#/">V2 Analytics</StyledLink>
+          <StyledLink href="https://info.pangolin.exchange/#/">V2 Analytics</StyledLink>
           <StyledLink href="https://docs.uniswap.org/">Docs</StyledLink>
-          <StyledLink href="https://wavax.org/#/swap">App</StyledLink>
+          <StyledLink href="https://wavax.org/#/swap?/#/swap">App</StyledLink>
         </AutoRow>
       </RowBetween>
     </Wrapper>
