@@ -23,16 +23,16 @@ export const AvalancheNetworkInfo: NetworkInfo = {
   id: SupportedNetwork.AVALANCHE,
   name: 'Avalanche',
   bgColor: '#07fca6',
-  primaryColor: '#fc077d',
+  primaryColor: '#0c8e0b',
   secondaryColor: '#2172E5',
   imageURL: ETHEREUM_LOGO_URL,
 }
 
 export const EthereumNetworkInfo: NetworkInfo = {
   id: SupportedNetwork.ETHEREUM,
-  name: 'Ethereum',
-  bgColor: '#fc077d',
-  primaryColor: '#fc077d',
+  name: 'Avalanche',
+  bgColor: '#1f772a',
+  primaryColor: '#1f772a',
   secondaryColor: '#2172E5',
   imageURL: ETHEREUM_LOGO_URL,
 }

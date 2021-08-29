@@ -26,6 +26,7 @@ const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   4: 'rinkeby.',
   5: 'goerli.',
   42: 'kovan.',
+  43114: '',
 }
 
 export function getEtherscanLink(
@@ -39,7 +40,7 @@ export function getEtherscanLink(
       ? 'https://explorer.offchainlabs.com'
       : networkVersion === OptimismNetworkInfo
       ? 'https://optimistic.etherscan.io'
-      : `https://${ETHERSCAN_PREFIXES[chainId] || ETHERSCAN_PREFIXES[1]}etherscan.io`
+      : `https://${ETHERSCAN_PREFIXES[chainId] || ETHERSCAN_PREFIXES[1]}cchain.explorer.avax.network`
 
   if (networkVersion === OptimismNetworkInfo) {
     switch (type) {
@@ -85,7 +86,7 @@ export function getEtherscanLink(
       return `${prefix}/token/${data}`
     }
     case 'block': {
-      return `${prefix}/block/${data}`
+      return `${prefix}/blocks/${data}`
     }
     case 'address':
     default: {

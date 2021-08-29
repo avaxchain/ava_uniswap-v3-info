@@ -29,7 +29,7 @@ const TopBar = () => {
         <Polling />
         <AutoRow gap="6px">
           <RowFixed>
-            <Item>ETH Price:</Item>
+            <Item>AVAX Price:</Item>
             <Item fontWeight="700" ml="4px">
               {formatDollarAmount(ethPrices?.current)}
             </Item>

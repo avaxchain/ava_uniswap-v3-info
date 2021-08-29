@@ -10,6 +10,7 @@ import EthereumLogo from '../../assets/images/ethereum-logo.png'
 
 export const getTokenLogoURL = (address: string) =>
   `https://raw.githubusercontent.com/ava-labs/bridge-tokens/main/avalanche-tokens/${address}/logo.png`
+//   `https://raw.githubusercontent.com/ava-labs/avalanche-bridge-resources/main/tokens/${address}/logo.png`
 
 const StyledLogo = styled(Logo)<{ size: string }>`
   width: ${({ size }) => size};
