@@ -36,9 +36,9 @@ const TopBar = () => {
           </RowFixed>
         </AutoRow>
         <AutoRow gap="6px" style={{ justifyContent: 'flex-end' }}>
-          <StyledLink href="https://info.pangolin.exchange/#/">V2 Analytics</StyledLink>
+          <StyledLink href="hhttps://thegraph.com/en/#/">V3 Info is Powered by TheGraph</StyledLink>
           <StyledLink href="https://docs.uniswap.org/">Docs</StyledLink>
-          <StyledLink href="https://wavax.org/#/swap?/#/swap">App</StyledLink>
+          <StyledLink href="https://wavax.org/#/swap?chain=avalanche">App</StyledLink>
         </AutoRow>
       </RowBetween>
     </Wrapper>

@@ -21,7 +21,7 @@ export const blockClient = new ApolloClient({
 })
 
 export const client = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/avadex/v35',
+  uri: 'https://api.thegraph.com/subgraphs/name/avadex/v36',
   cache: new InMemoryCache({
     typePolicies: {
       Token: {

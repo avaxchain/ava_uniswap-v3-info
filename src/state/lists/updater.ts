@@ -1,5 +1,5 @@
 import { getVersionUpgrade, minVersionBump, VersionUpgrade } from '@uniswap/token-lists'
-import { AVA_AEB_LIST, UNSUPPORTED_LIST_URLS } from 'constants/lists'
+import { AVA_DEFI_LIST, UNSUPPORTED_LIST_URLS } from 'constants/lists'
 import { useCallback, useEffect } from 'react'
 import { useAllLists } from 'state/lists/hooks'
 import { useFetchListCallback } from '../../hooks/useFetchListCallback'
@@ -25,7 +25,7 @@ export default function Updater(): null {
     )
   }, [fetchList, isWindowVisible, lists])
 
-  dispatch(enableList(AVA_AEB_LIST))
+  dispatch(enableList(AVA_DEFI_LIST))
 
   // fetch all lists every 10 minutes, but only after we initialize library
   useInterval(fetchAllListsCallback, 1000 * 60 * 10)

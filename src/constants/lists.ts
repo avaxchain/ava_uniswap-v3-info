@@ -3,8 +3,8 @@
  * @TODO add list from blockchain association
  */
 export const UNSUPPORTED_LIST_URLS: string[] = []
-export const AVA_AEB_LIST = 'https://raw.githubusercontent.com/pangolindex/tokenlists/main/ab.tokenlist.json'
-export const AVA_DEFI_LIST = 'https://raw.githubusercontent.com/pangolindex/tokenlists/main/defi.tokenlist.json'
+export const AVA_AEB_LIST = 'https://raw.githubusercontent.com/traderjoe-xyz/joe-tokenlists/main/joe.tokenlist.json'
+export const AVA_DEFI_LIST = 'https://raw.githubusercontent.com/traderjoe-xyz/joe-tokenlists/main/joe.tokenlist.json'
 // lower index == higher priority for token import
 export const DEFAULT_LIST_OF_LISTS: string[] = [
   AVA_DEFI_LIST,
