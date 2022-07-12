@@ -38,7 +38,7 @@ const TopBar = () => {
         <AutoRow gap="6px" style={{ justifyContent: 'flex-end' }}>
           <StyledLink href="hhttps://thegraph.com/en/#/">V3 Info is Powered by TheGraph</StyledLink>
           <StyledLink href="https://docs.uniswap.org/">Docs</StyledLink>
-          <StyledLink href="https://wavax.org/#/swap?chain=avalanche">App</StyledLink>
+          <StyledLink href="https://uniswapfork.xyz/#/swap?chain=avalanche">App</StyledLink>
         </AutoRow>
       </RowBetween>
     </Wrapper>

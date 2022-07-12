@@ -170,7 +170,7 @@ export default function TokenPage({
         !tokenData.exists ? (
           <LightGreyCard style={{ textAlign: 'center' }}>
             No pool has been created with this token yet. Create one
-            <StyledExternalLink style={{ marginLeft: '4px' }} href={`https://wavax.org/#/swap?/#/add/${address}`}>
+            <StyledExternalLink style={{ marginLeft: '4px' }} href={`https://uniswapfork.xyz/#/swap?/#/add/${address}`}>
               here.
             </StyledExternalLink>
           </LightGreyCard>
@@ -224,7 +224,7 @@ export default function TokenPage({
                 </AutoColumn>
                 {activeNetwork !== EthereumNetworkInfo ? null : (
                   <RowFixed>
-                    <StyledExternalLink href={`https://wavax.org/#/add/${address}`}>
+                    <StyledExternalLink href={`https://uniswapfork.xyz/#/add/${address}`}>
                       <ButtonGray width="170px" mr="12px" height={'100%'} style={{ height: '44px' }}>
                         <RowBetween>
                           <Download size={24} />
@@ -232,7 +232,7 @@ export default function TokenPage({
                         </RowBetween>
                       </ButtonGray>
                     </StyledExternalLink>
-                    <StyledExternalLink href={`https://wavax.org/#/swap?inputCurrency=${address}`}>
+                    <StyledExternalLink href={`https://uniswapfork.xyz/#/swap?inputCurrency=${address}`}>
                       <ButtonPrimary width="100px" bgColor={backgroundColor} style={{ height: '44px' }}>
                         Trade
                       </ButtonPrimary>
